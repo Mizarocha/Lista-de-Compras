@@ -142,3 +142,15 @@ function getDragAfterElement(container, y) {
         }
     }, { offset: Number.NEGATIVE_INFINITY, element: null }).element;
 }
+
+/*navegador */ 
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('./service-worker.js')
+    .then(function(registration) {
+      console.log('ServiceWorker registrado com sucesso:', registration.scope);
+    }, function(err) {
+      console.log('ServiceWorker falhou:', err);
+    });
+  });
+}

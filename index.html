@@ -1,18 +1,22 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#4caf50">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Compras do Mês</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <div class="container">
         <h1>🛒 Lista de Compras do Mês</h1>
 
         <div class="input-area">
             <input type="text" id="itemInput" placeholder="Adicionar item...">
-            
+
             <select id="categoriaSelect">
                 <option value="Mercado">Mercado</option>
                 <option value="Açougue">Açougue</option>
@@ -20,7 +24,7 @@
                 <option value="Limpeza">Limpeza</option>
                 <option value="Farmácia">Farmácia</option>
             </select>
-            
+
             <button onclick="adicionarItem()">Adicionar</button>
         </div>
 
@@ -28,5 +32,7 @@
     </div>
 
     <script src="script.js"></script>
+    <script src="service-worker.js"></script>
 </body>
+
 </html>
