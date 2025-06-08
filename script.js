@@ -1,5 +1,6 @@
 let lista = [];
 
+
 function getDragAfterElement(container, y) {
   const draggableElements = [...container.querySelectorAll('li:not(.dragging)')];
 
@@ -74,7 +75,11 @@ function renderizarLista(snapshot) {
     items.push({ id: docSnap.id, ...docSnap.data() });
   });
 
-  const categorias = [...new Set(items.map(item => item.categoria))];
+ const ordemCategorias = ["Mercado", "Limpeza", "Açougue", "Hortifruti", "Adicionais",];
+const categorias = ordemCategorias.filter(cat =>
+  items.some(item => item.categoria === cat)
+);
+
 
   categorias.forEach(categoria => {
     const catDiv = document.createElement("div");
