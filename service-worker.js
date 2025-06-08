@@ -35,11 +35,14 @@ self.addEventListener('activate', (evt) => {
   self.clients.claim();
 });
 
-// Intercepta as requisições
+
+// Intercepta as requisições e fornece fallback para offline
 self.addEventListener('fetch', (evt) => {
   evt.respondWith(
     caches.match(evt.request).then((response) => {
-      return response || fetch(evt.request);
+      return response || fetch(evt.request).catch(() => {
+        return caches.match('./index.html');
+      });
     })
   );
 });
