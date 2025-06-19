@@ -44,7 +44,7 @@ agrupados por categoria, de forma rápida, prática e acessível diretamente pel
 ______________________________________________________________________________________________________________________________________________________________________________________
 Demonstração: 
 <div  align="center">
-<img  width="350" height="300" src="https://github.com/user-attachments/assets/6a0b334c-8f1d-4dc6-9686-fa92dedc514c">
+<img  width="350" height="350" src="https://github.com/user-attachments/assets/a7d169ee-d015-4120-aa82-bd50450628e1">
 </div>
 
 URL: https://mizarocha.github.io/Lista-de-Compras/
