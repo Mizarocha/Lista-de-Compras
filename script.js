@@ -1,3 +1,9 @@
+// Firebase
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
+import { getFirestore, collection, addDoc, deleteDoc, doc, updateDoc, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
+import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
+
+
 const isOwner = window.location.search.includes("admin");
 
 let lista = [];
@@ -30,9 +36,6 @@ if ('serviceWorker' in navigator) {
   });
 }
 
-// Firebase
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
-import { getFirestore, collection, addDoc, deleteDoc, doc, updateDoc, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDQBIdJf6xbeT7L_eG9akCmQnObNZuoof4",
@@ -45,6 +48,8 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+const auth = getAuth(app);
+
 
 const listaRef = collection(db, "listaDeCompras");
 
@@ -76,7 +81,6 @@ async function adicionarItem() {
 
   document.getElementById("itemInput").value = "";
 }
-
 
 function renderizarLista(snapshot = null) {
   const div = document.getElementById("listasPorCategoria");
@@ -224,6 +228,24 @@ window.onload = function() {
     carregarLista();
   }
 };
+
+document.getElementById("loginBtn").addEventListener("click", async () => {
+  const email = document.getElementById("emailInput").value;
+  const password = document.getElementById("passwordInput").value;
+
+  try {
+    await signInWithEmailAndPassword(auth, email, password);
+    alert("Login feito com sucesso!");
+  } catch (error) {
+    console.error(error);
+    alert("Erro ao fazer login: " + error.message);
+  }
+});
+
+document.getElementById("logoutBtn").addEventListener("click", async () => {
+  await signOut(auth);
+  alert("Você saiu!");
+});
 
 
 /* FUNÇAO BOTAO DESMARCAR*/ 

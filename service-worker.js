@@ -35,8 +35,6 @@ self.addEventListener('activate', (evt) => {
   self.clients.claim();
 });
 
-
-// Intercepta as requisições e fornece fallback para offline
 self.addEventListener('fetch', (evt) => {
   evt.respondWith(
     caches.match(evt.request).then((response) => {
