@@ -1,3 +1,5 @@
+const isOwner = window.location.search.includes("admin");
+
 let lista = [];
 
 
@@ -55,31 +57,46 @@ async function adicionarItem() {
     return;
   }
 
-  // Define ordem como timestamp para colocar no final
-  await addDoc(listaRef, {
-    nome,
-    categoria,
-    comprado: false,
-    ordem: Date.now()
-  });
+  if (isOwner) {
+    await addDoc(listaRef, {
+      nome,
+      categoria,
+      comprado: false,
+      ordem: lista.length
+    });
+  } else {
+    lista.push({
+      nome,
+      categoria,
+      comprado: false
+    });
+    salvarLista();
+    renderizarLista();
+  }
 
   document.getElementById("itemInput").value = "";
 }
 
-function renderizarLista(snapshot) {
+
+function renderizarLista(snapshot = null) {
   const div = document.getElementById("listasPorCategoria");
   div.innerHTML = "";
 
-  const items = [];
-  snapshot.forEach(docSnap => {
-    items.push({ id: docSnap.id, ...docSnap.data() });
-  });
+  let items = [];
 
- const ordemCategorias = ["Mercado", "Limpeza", "Açougue", "Hortifruti", "Adicionais",];
-const categorias = ordemCategorias.filter(cat =>
-  items.some(item => item.categoria === cat)
-);
+  if (isOwner && snapshot) {
+    snapshot.forEach(docSnap => {
+      items.push({ id: docSnap.id, ...docSnap.data() });
+    });
+  } else {
+    items = lista;
+  }
 
+  // Ordenar categorias (se quiser manter fixo)
+  const ordemCategorias = ["Mercado", "Açougue", "Hortifruti", "Adicionais"];
+  const categorias = ordemCategorias.filter(cat =>
+    items.some(item => item.categoria === cat)
+  );
 
   categorias.forEach(categoria => {
     const catDiv = document.createElement("div");
@@ -90,10 +107,8 @@ const categorias = ordemCategorias.filter(cat =>
     catDiv.appendChild(titulo);
 
     const ul = document.createElement("ul");
-    ul.dataset.categoria = categoria;
-
-    // Eventos para dragover e drop no ul
-    ul.addEventListener("dragover", e => {
+    
+     ul.addEventListener("dragover", e => {
       e.preventDefault();
       const afterElement = getDragAfterElement(ul, e.clientY);
       const dragging = document.querySelector('.dragging');
@@ -109,47 +124,70 @@ const categorias = ordemCategorias.filter(cat =>
     ul.addEventListener("drop", async e => {
       e.preventDefault();
 
-      const lis = [...ul.querySelectorAll("li")];
-      for (let i = 0; i < lis.length; i++) {
-        const id = lis[i].dataset.id;
-        // Atualiza campo ordem no Firestore conforme posição visual
-        await updateDoc(doc(db, "listaDeCompras", id), { ordem: i });
+      if (isOwner) {
+        const lis = [...ul.querySelectorAll("li")];
+        for (let i = 0; i < lis.length; i++) {
+          const id = lis[i].dataset.id;
+          await updateDoc(doc(db, "listaDeCompras", id), { ordem: i });
+        }
+      } else {
+    
+    const lis = [...ul.querySelectorAll("li")];
+    lista = lis.map(li => {
+      const nome = li.querySelector("span").innerText;
+      const categoria = ul.dataset.categoria;
+      const comprado = li.querySelector("input").checked;
+      return { nome, categoria, comprado };
+    });
+        salvarLista();
       }
     });
-
-    // Ordena pelo campo ordem
+    
     items
       .filter(i => i.categoria === categoria)
-      .sort((a, b) => (a.ordem ?? 0) - (b.ordem ?? 0))
       .forEach(item => {
         const li = document.createElement("li");
         li.className = item.comprado ? "comprado" : "";
-        li.draggable = true;
-        li.dataset.id = item.id;
+         li.draggable = true; 
 
         li.innerHTML = `
-            <input type="checkbox" ${item.comprado ? "checked" : ""}>
-            <span>${item.nome}</span>
-            <button class="remove">X</button>
+          <input type="checkbox" ${item.comprado ? "checked" : ""}>
+          <span>${item.nome}</span>
+          <button class="remove">X</button>
+          
         `;
-
-        li.addEventListener("dragstart", e => {
+        
+         li.addEventListener("dragstart", () => {
           li.classList.add("dragging");
-          e.dataTransfer.setData("text/plain", item.id);
         });
 
-        li.addEventListener("dragend", () => {
-          li.classList.remove("dragging");
-        });
+   
+    li.addEventListener("dragend", () => {
+      li.classList.remove("dragging");
+    });
 
         li.querySelector('input').addEventListener('change', async () => {
-          await updateDoc(doc(db, "listaDeCompras", item.id), {
-            comprado: !item.comprado
-          });
+          if (isOwner) {
+            await updateDoc(doc(db, "listaDeCompras", item.id), {
+              comprado: !item.comprado
+            });
+          } else {
+            item.comprado = !item.comprado;
+            salvarLista();
+            renderizarLista();
+          }
+          
         });
 
         li.querySelector('button').addEventListener('click', async () => {
-          await deleteDoc(doc(db, "listaDeCompras", item.id));
+          if (isOwner) {
+            await deleteDoc(doc(db, "listaDeCompras", item.id));
+          } else {
+            lista = lista.filter(i => i !== item);
+            salvarLista();
+            renderizarLista();
+          }
+          
         });
 
         ul.appendChild(li);
@@ -160,11 +198,32 @@ const categorias = ordemCategorias.filter(cat =>
   });
 }
 
-// Escuta ordenada pelo campo "ordem"
-const q = query(listaRef, orderBy("ordem"));
+function salvarLista() {
+  if (!isOwner) {
+    localStorage.setItem("listaCompras", JSON.stringify(lista));
+  }
+}
 
-onSnapshot(q, (snapshot) => {
-  renderizarLista(snapshot);
-});
+function carregarLista() {
+  if (!isOwner) {
+    const data = localStorage.getItem("listaCompras");
+    if (data) {
+      lista = JSON.parse(data);
+      renderizarLista();
+    }
+  }
+}
+
+window.onload = function() {
+  if (isOwner) {
+    const q = query(listaRef, orderBy("ordem"));
+    onSnapshot(q, (snapshot) => {
+      renderizarLista(snapshot);
+    });
+  } else {
+    carregarLista();
+  }
+};
+
 
 document.getElementById("btnAdicionar").addEventListener("click", adicionarItem);
