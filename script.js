@@ -226,4 +226,23 @@ window.onload = function() {
 };
 
 
+/* FUNÇAO BOTAO DESMARCAR*/ 
+async function desmarcarTudo() {
+  if (isOwner) {
+       const snapshot = await getDocs(listaRef);
+    snapshot.forEach(async (docSnap) => {
+      await updateDoc(doc(db, "listaDeCompras", docSnap.id), {
+        comprado: false
+      });
+    });
+  } else {
+    lista = lista.map(item => ({ ...item, comprado: false }));
+    salvarLista();
+    renderizarLista();
+  }
+}
+
+
 document.getElementById("btnAdicionar").addEventListener("click", adicionarItem);
+document.getElementById("btnDesmarcarTudo").addEventListener("click", desmarcarTudo);
+

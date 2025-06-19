@@ -8,7 +8,7 @@ body {
 }
 
 .container {
-    background-color: rgb(249 229 239);
+  background-color: rgb(249 229 239);
   padding: 30px;
   border-radius: 10px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
@@ -50,13 +50,25 @@ button:hover {
   background-color: #218838;
 }
 
+#btnDesmarcarTudo {
+  padding: 10px 15px;
+  background-color: rgb(223, 83, 83);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#btnDesmarcarTudo:hover {
+  background-color: rgb(235, 40, 40);
+}
 .categoria {
   margin-top: 20px;
 }
 
 .categoria h2 {
   border-bottom: 2px solid rgb(247 80 161 / 54%);
-   color: #f2088b;
+  color: #f2088b;
   padding-bottom: 5px;
 }
 
@@ -73,7 +85,7 @@ li {
   justify-content: space-between;
   padding: 10px;
   border-bottom: 1px solid #eee;
- background-color: #f9c7ee;
+  background-color: #f9c7ee;
   border-radius: 5px;
   margin-bottom: 5px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);

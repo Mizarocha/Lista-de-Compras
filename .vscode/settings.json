@@ -5,6 +5,7 @@
         "arquivos",
         "Ativa",
         "Atualiza",
+        "BOTAO",
         "carregar",
         "categoria",
         "Categoria",
@@ -13,6 +14,7 @@
         "comprado",
         "Compras",
         "conforme",
+        "DESMARCAR",
         "Digite",
         "Escuta",
         "Eventos",
@@ -20,9 +22,11 @@
         "firebaseapp",
         "Firestore",
         "fixo",
+        "FUNÇAO",
         "Hortifruti",
         "Instala",
         "Intercepta",
+        "Limpar",
         "Limpeza",
         "Lista",
         "listas",
@@ -42,6 +46,7 @@
         "salvar",
         "sucesso",
         "titulo",
+        "Tudo",
         "Zuoof"
     ]
 }
