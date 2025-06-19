@@ -93,7 +93,7 @@ function renderizarLista(snapshot = null) {
   }
 
   // Ordenar categorias (se quiser manter fixo)
-  const ordemCategorias = ["Mercado", "Limpeza","Açougue", "Hortifruti", "Adicionais"];
+  const ordemCategorias = ["Mercado", "Limpeza", "Açougue", "Hortifruti", "Adicionais"];
   const categorias = ordemCategorias.filter(cat =>
     items.some(item => item.categoria === cat)
   );
