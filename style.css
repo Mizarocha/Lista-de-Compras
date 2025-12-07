@@ -5,10 +5,11 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
+  background-image: url("./img/Imagem do WhatsApp de 2025-07-16 à(s) 22.12.06_5ef4fbf2.jpg");
 }
 
 .container {
-    background-color: rgb(249 229 239);
+  background-color: rgb(249 229 239);
   padding: 30px;
   border-radius: 10px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
@@ -56,7 +57,7 @@ button:hover {
 
 .categoria h2 {
   border-bottom: 2px solid rgb(247 80 161 / 54%);
-   color: #f2088b;
+  color: #f2088b;
   padding-bottom: 5px;
 }
 
@@ -73,7 +74,7 @@ li {
   justify-content: space-between;
   padding: 10px;
   border-bottom: 1px solid #eee;
- background-color: #f9c7ee;
+  background-color: #f9c7ee;
   border-radius: 5px;
   margin-bottom: 5px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
