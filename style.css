@@ -51,6 +51,18 @@ button:hover {
   background-color: #218838;
 }
 
+#btnDesmarcarTudo {
+  padding: 10px 15px;
+  background-color: rgb(223, 83, 83);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#btnDesmarcarTudo:hover {
+  background-color: rgb(235, 40, 40);
+}
 .categoria {
   margin-top: 20px;
 }
