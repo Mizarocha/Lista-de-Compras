@@ -10,12 +10,18 @@ agrupados por categoria, de forma rápida, prática e acessível diretamente pel
 <br>
 🚩 Problema:              
 
- Todo mês eu fazia listas de compras no papel, no bloco de notas do celular ou em aplicativos que não eram exatamente do jeito que eu queria. O problema era:  
+ Todo mês eu fazia listas de compras no papel ou no bloco de notas do celular, nada acessível. O problema era:  
 
-- Difícil manter a mesma lista mês após mês.         
+- O lista no papel molhava, rasgava, perdia no supermercado e até ficava sujo o papel.
+- Difícil manter a mesma lista mês após mês, tinha que refazer todo mês.      
 - Pouco controle sobre categorias (Mercado, Açougue, Hortifruti, etc.).      
-- Não havia uma forma fácil de marcar os itens já comprados.     
-- Não era possível reorganizar os itens conforme minha prioridade ou ordem no mercado.
+- Não havia uma forma fácil de marcar os itens já comprados.(a caneta não pegava).
+- Não é sustentável.
+- Cada lista utiliza papel novo, o que demanda árvores, água e energia para ser produzido.
+- Mesmo pequenas quantidades, ao longo do tempo, geram desperdício.
+- A lista é usada apenas uma vez e descartada.
+- Isso aumenta a quantidade de resíduos sólidos, que muitas vezes não são reciclados corretamente. 
+
 
 <br>
   🛠️ Solução:                                                                                                                  
@@ -26,6 +32,8 @@ agrupados por categoria, de forma rápida, prática e acessível diretamente pel
 ✅ Reorganizar os itens dentro de cada categoria através de Drag & Drop (arrastar e soltar).                         
 ✅ A lista fica salva no navegador (localStorage), mantendo os dados mesmo após fechar a página.                      
 ✅ Interface simples, responsiva e fácil de usar no celular ou no computador.                                         
+✅ Usar aplicativos economiza recursos.                
+✅ Reduz o lixo e evita compras duplicadas ou esquecidas, tornando o processo mais prático.
 
 🌐 Tecnologias utilizadas:                                             
 - HTML                                         
@@ -35,11 +43,12 @@ agrupados por categoria, de forma rápida, prática e acessível diretamente pel
 <br>                            
 🚀 Funcionalidades futuras (em desenvolvimento ou ideias): 
 
-🔄 Permitir mover itens entre categorias.                  
-📲 Transformar em um aplicativo offline (PWA).           
-🧾 Gerar uma versão imprimível ou PDF da lista.             
-☁️ Salvar a lista na nuvem para acessar de qualquer dispositivo.         
-👨‍👩‍👧‍👦 Compartilhar a lista com outras pessoas (ex: família).      
+🔄 Permitir mover itens entre categorias.        
+📲 Transformar em um aplicativo offline (PWA).          
+☁️ Salvar a lista na nuvem para acessar de qualquer dispositivo.          
+👨‍👩‍👧‍👦 Todas as pessoas terem acesso, com versões gratuita e premium para alcançar mais usuários.        
+💰 Monetizar o projeto e transformá-lo em um produto comercial, permitindo vender listas, oferecer funcionalidades avançadas e gerar receita de forma escalável.          
+
 
 ______________________________________________________________________________________________________________________________________________________________________________________
 Demonstração: 
