@@ -43,11 +43,13 @@ if ('serviceWorker' in navigator) {
 }
 
 
+
+
 const firebaseConfig = {
   apiKey: "AIzaSyDQBIdJf6xbeT7L_eG9akCmQnObNZuoof4",
   authDomain: "lista-de-compras-56e84.firebaseapp.com",
   projectId: "lista-de-compras-56e84",
-   storageBucket: "lista-de-compras-56e84.firebasestorage.app",
+  storageBucket: "lista-de-compras-56e84.appspot.com",
   messagingSenderId: "995972787687",
   appId: "1:995972787687:web:76abec54fc95521be96142"
 };
