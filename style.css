@@ -206,12 +206,3 @@ li.dragging {
   opacity: 0.5;
   background-color: #f0f0f0;
 }
-
-@media (max-width: 1080px) {
-  #btnDesmarcarTudo {
-    padding: 10px 60px;
-  }
-  #btnAdicionar {
-    padding: 10px 60px;
-  }
-}
