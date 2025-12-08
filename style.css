@@ -5,7 +5,16 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-image: url("./img/Ilustração de alimentos.png");
+  background-image: url("./img/alimentos.png");
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+}
+
+img {
+  width: 180px;
 }
 
 .card-cadastro {
@@ -35,20 +44,36 @@ h2.titulo-cadastro {
   color: #266ed9;
 }
 
+#mainArea {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  background: none;
+  box-shadow: none;
+}
+
+input[type="text"],
+[type="email"],
+[type="password"] {
+  flex: 1;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
 .container {
+  width: 100%;
   background-color: rgb(249 229 239);
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-  width: 500px;
-  max-height: 90vh;
-  overflow-y: auto;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
   text-align: center;
   margin-bottom: 20px;
-  color: black;
+  color: pink;
 }
 
 .input-area {
@@ -166,4 +191,9 @@ li.dragging {
 .google-btn img {
   width: 20px;
   height: 20px;
+}
+
+body.logado {
+  background-image: none !important;
+  background-color: #f7f7f7;
 }

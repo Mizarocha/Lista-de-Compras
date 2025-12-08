@@ -319,6 +319,25 @@ window.onload = function() {
   }
 };
 
+document.getElementById("loginBtn").addEventListener("click", async () => {
+  const email = document.getElementById("emailInput").value;
+  const password = document.getElementById("passwordInput").value;
+
+  try {
+    await signInWithEmailAndPassword(auth, email, password);
+    alert("Login feito com sucesso!");
+  } catch (error) {
+    console.error(error);
+    alert("Erro ao fazer login: " + error.message);
+  }
+});
+
+document.getElementById("logoutBtn").addEventListener("click", async () => {
+  await signOut(auth);
+  alert("Você saiu!");
+});
+
+
 
 /* FUNÇAO BOTAO DESMARCAR*/ 
 async function desmarcarTudo() {
@@ -335,6 +354,9 @@ async function desmarcarTudo() {
     renderizarLista();
   }
 }
+
+document.body.classList.add("logado");
+document.body.classList.remove("logado");
 
 
 document.getElementById("btnAdicionar").addEventListener("click", adicionarItem);
