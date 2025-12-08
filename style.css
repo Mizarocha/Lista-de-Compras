@@ -35,15 +35,6 @@ h2.titulo-cadastro {
   color: #266ed9;
 }
 
-input[type="text"],
-[type="email"],
-[type="password"] {
-  flex: 1;
-  padding: 10px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-}
-
 .container {
   background-color: rgb(249 229 239);
   padding: 30px;
@@ -57,7 +48,7 @@ input[type="text"],
 h1 {
   text-align: center;
   margin-bottom: 20px;
-  color: white;
+  color: black;
 }
 
 .input-area {
