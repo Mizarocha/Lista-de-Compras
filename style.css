@@ -1,42 +1,43 @@
 body {
   font-family: Arial, sans-serif;
-  background-color: #f7f7f7;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background-image: url("./img/alimentos.png");
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
 }
 
-/* Container principal */
 .auth-container {
+  position: relative;
+  background-image: url("./img/alimentos.png");
+  background-position: top;
+  background-repeat: no-repeat;
+
+  width: 100%;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 40px;
 }
 
 /* Logo */
 .logo {
   width: 120px;
-  margin-bottom: 10px;
+  margin: 0 auto 10px;
+  transform: translateY(65px);
 }
 
 .logo img {
   width: 100%;
   height: auto;
   display: block;
+  margin: 0;
 }
 
 .auth-box {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
   width: 300px;
-  background: #fff;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-top: 60px;
 }
 
 .google-btn {
@@ -204,4 +205,13 @@ li.comprado span {
 li.dragging {
   opacity: 0.5;
   background-color: #f0f0f0;
+}
+
+@media (max-width: 1080px) {
+  #btnDesmarcarTudo {
+    padding: 10px 60px;
+  }
+  #btnAdicionar {
+    padding: 10px 60px;
+  }
 }
