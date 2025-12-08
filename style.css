@@ -5,6 +5,7 @@ body {
   background: #ffffff;
 }
 
+/* ÁREA PRINCIPAL */
 #mainArea {
   display: flex;
   flex-direction: column;
@@ -13,7 +14,8 @@ body {
   min-height: 100vh;
 }
 
-= @media (max-width: 600px) {
+/* TELAS PEQUENAS */
+@media (max-width: 600px) {
   #mainArea {
     justify-content: center;
     padding: 20px;
@@ -24,16 +26,50 @@ body {
     width: 100%;
     max-width: 400px;
   }
+
+  .input-area {
+    flex-direction: column;
+  }
+
+  .input-area input[type="text"],
+  .input-area select,
+  .input-area button {
+    width: 100%;
+  }
 }
 
+/* TELAS MÉDIAS */
+@media (min-width: 601px) {
+  .input-area input[type="text"],
+  .input-area select {
+    max-width: 250px;
+    flex: none;
+  }
+}
+
+/* TELAS GRANDES (DESKTOP) */
+@media (min-width: 801px) {
+  #mainArea {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+}
+
+/* LOGIN / CADASTRO */
 .auth-container {
   position: relative;
   background-image: url("./img/alimentos.png");
   background-position: top;
   background-repeat: no-repeat;
-
   width: 100%;
   height: 100vh;
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -83,14 +119,13 @@ body {
   height: 20px;
 }
 
+/* CARD DO CADASTRO */
 .card-cadastro {
   display: flex;
   flex-direction: column;
   gap: 18px;
-
   width: 360px;
   padding: 28px;
-
   background: linear-gradient(180deg, #ffffff 0%, #f9fafc 100%);
   border-radius: 18px;
 
@@ -110,15 +145,17 @@ h2.titulo-cadastro {
   color: #266ed9;
 }
 
+/* Inputs */
 input[type="text"],
-[type="email"],
-[type="password"] {
+input[type="email"],
+input[type="password"] {
   flex: 1;
   padding: 10px;
   border-radius: 5px;
   border: 1px solid #ccc;
 }
 
+/* LISTA DE COMPRAS */
 .container {
   width: 100%;
   background-color: rgb(249 229 239);
@@ -170,6 +207,8 @@ button {
 #btnDesmarcarTudo:hover {
   background-color: rgb(235, 40, 40);
 }
+
+/* Categorias */
 .categoria {
   margin-top: 20px;
 }
@@ -180,6 +219,7 @@ button {
   padding-bottom: 5px;
 }
 
+/* Lista */
 ul {
   list-style: none;
   padding: 0;
@@ -226,11 +266,4 @@ li.comprado span {
 li.dragging {
   opacity: 0.5;
   background-color: #f0f0f0;
-}
-@media (min-width: 601px) {
-  .input-area input[type="text"],
-  .input-area select {
-    max-width: 250px;
-    flex: none;
-  }
 }
