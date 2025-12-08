@@ -8,8 +8,57 @@ body {
   background-image: url("./img/alimentos.png");
 }
 
-img {
-  width: 180px;
+/* Container principal */
+.auth-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 40px;
+}
+
+/* Logo */
+.logo {
+  width: 120px;
+  margin-bottom: 10px;
+}
+
+.logo img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.auth-box {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 300px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.google-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 12px 16px;
+  background-color: #2e268c;
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.google-btn img {
+  width: 20px;
+  height: 20px;
 }
 
 .card-cadastro {
@@ -37,15 +86,6 @@ img {
 h2.titulo-cadastro {
   text-align: center;
   color: #266ed9;
-}
-
-#mainArea {
-  width: 100%;
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 20px;
-  background: none;
-  box-shadow: none;
 }
 
 input[type="text"],
@@ -164,26 +204,4 @@ li.comprado span {
 li.dragging {
   opacity: 0.5;
   background-color: #f0f0f0;
-}
-
-.google-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  width: 100%;
-  padding: 12px 16px;
-  background-color: #2e268c;
-  color: white;
-  font-size: 15px;
-  font-weight: 600;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: opacity 0.2s ease;
-}
-
-.google-btn img {
-  width: 20px;
-  height: 20px;
 }
