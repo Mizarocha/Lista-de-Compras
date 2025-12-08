@@ -205,3 +205,34 @@ li.dragging {
   opacity: 0.5;
   background-color: #f0f0f0;
 }
+
+@media screen and (max-width: 600px) {
+  .form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+  }
+
+  #inputItem,
+  #btnAdd,
+  #selectCategoria,
+  #btnDesmarcar {
+    width: 100%;
+  }
+
+  .btn-add {
+    order: 2;
+  }
+
+  .btn-desmarcar {
+    order: 4;
+  }
+
+  #inputItem {
+    order: 1;
+  }
+  #selectCategoria {
+    order: 3;
+  }
+}
