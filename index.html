@@ -14,43 +14,39 @@
 </head>
 
 <body>
-    <!--<div id="authArea" class="auth-container">
 
-        <div id="authArea" class="auth-container"
-            style="display: flex; flex-direction: column; align-items: center; margin-top: 50px;">
+    <div id="authArea" class="auth-container"
+        style="display: flex; flex-direction: column; align-items: center; margin-top: 50px;">
 
-            <h1>🛒 Lista de Compras</h1>
-
-            <div class="auth-box" style="display: flex; flex-direction: column; gap: 10px; width: 300px;">
-
-                <h2>Criar conta / Entrar</h2>
-
-                <input type="text" id="nomeCadastro" placeholder="Seu nome">
-                <input type="email" id="emailCadastro" placeholder="Email">
-                <input type="password" id="senhaCadastro" placeholder="Senha">
-
-                <button id="btnCadastrar">Cadastrar / Entrar</button>
-
-                <hr>
-
-                <button id="btnGoogle" style="background-color: #db4437; color: white;">
-                    Entrar com Google
-                </button>
-
-            </div>
+        <div class="logo">
+            <img src="./img/logo2.png">
         </div>
 
+        <div class="auth-box" style="display: flex; flex-direction: column; gap: 10px; width: 300px;">
 
+            <h2 class="titulo-cadastro">Login</h2>
+
+            <input type="text" id="nomeCadastro" placeholder="Digite seu nome">
+            <input type="email" id="emailCadastro" placeholder="Email">
+            <input type="password" id="senhaCadastro" placeholder="Senha">
+
+            <button id="btnCadastrar">Entrar</button>
+
+            <hr>
+            <button id="btnGoogle" class="google-btn">
+                <img src="https://www.svgrepo.com/show/355037/google.svg" alt="Google Icon">
+                Entrar com Google
+            </button>
+
+        </div>
+    </div>
+
+
+    <div id="mainArea" style="display:none;">
         <div class="container">
             <h1>🛒 Lista de compras</h1>
 
-            <div id="loginArea" style="display:none; margin-bottom: 20px;">
-                <input type="email" id="emailInput" placeholder="Email">
-                <input type="password" id="passwordInput" placeholder="Senha">
-                <button id="loginBtn">Login</button>
-            </div>
-
-            <div id="logoutArea" style="display:none; margin-bottom: 20px;">
+            <div id="logoutArea" style="margin-bottom: 20px; display:none;">
                 <button id="logoutBtn">Logout</button>
             </div>
 
@@ -66,72 +62,12 @@
                 <button id="btnAdicionar">Adicionar</button>
                 <button id="btnDesmarcarTudo">Desmarcar tudo</button>
             </div>
+
             <div id="listasPorCategoria"></div>
         </div>
+    </div>
 
-        <script type="module" src="./script.js"></script>-->
-
-    <body>
-
-        <!-- TELA DE LOGIN / CADASTRO -->
-        <div id="authArea" class="auth-container"
-            style="display: flex; flex-direction: column; align-items: center; margin-top: 50px;">
-
-            <div class="logo">
-                <img src="./img/logo2.png">
-            </div>
-
-            <div class="auth-box" style="display: flex; flex-direction: column; gap: 10px; width: 300px;">
-
-                <h2 class="titulo-cadastro">Login</h2>
-
-                <input type="text" id="nomeCadastro" placeholder="Digite seu nome">
-                <input type="email" id="emailCadastro" placeholder="Email">
-                <input type="password" id="senhaCadastro" placeholder="Senha">
-
-                <button id="btnCadastrar">Entrar</button>
-
-                <hr>
-                <button id="btnGoogle" class="google-btn">
-                    <img src="https://www.svgrepo.com/show/355037/google.svg" alt="Google Icon">
-                    Entrar com Google
-                </button>
-
-
-            </div>
-        </div>
-
-        <!-- ÁREA PRINCIPAL DO SITE -->
-        <div id="mainArea" style="display:none;">
-            <div class="container">
-                <h1>🛒 Lista de compras</h1>
-
-                <div id="logoutArea" style="margin-bottom: 20px; display:none;">
-                    <button id="logoutBtn">Logout</button>
-                </div>
-
-                <div class="input-area">
-                    <input type="text" id="itemInput" placeholder="Digite o item">
-                    <select id="categoriaSelect">
-                        <option value="Mercado">Mercado</option>
-                        <option value="Limpeza">Limpeza</option>
-                        <option value="Açougue">Açougue</option>
-                        <option value="Hortifruti">Hortifruti</option>
-                        <option value="Adicionais">Adicionais</option>
-                    </select>
-                    <button id="btnAdicionar">Adicionar</button>
-                    <button id="btnDesmarcarTudo">Desmarcar tudo</button>
-                </div>
-
-                <div id="listasPorCategoria"></div>
-            </div>
-        </div>
-
-        <script type="module" src="./script.js"></script>
-
-    </body>
-
-
+    <script type="module" src="./script.js"></script>
 
 </body>
 

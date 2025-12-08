@@ -356,8 +356,6 @@ async function desmarcarTudo() {
 }
 
 
-
-
 document.getElementById("btnAdicionar").addEventListener("click", adicionarItem);
 document.getElementById("btnDesmarcarTudo").addEventListener("click", desmarcarTudo);
 
