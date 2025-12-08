@@ -8,11 +8,6 @@ body {
   background-image: url("./img/alimentos.png");
 }
 
-.logo {
-  display: flex;
-  justify-content: center;
-}
-
 img {
   width: 180px;
 }
@@ -191,9 +186,4 @@ li.dragging {
 .google-btn img {
   width: 20px;
   height: 20px;
-}
-
-body.logado {
-  background-image: none !important;
-  background-color: #f7f7f7;
 }

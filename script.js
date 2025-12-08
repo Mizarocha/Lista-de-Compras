@@ -355,8 +355,7 @@ async function desmarcarTudo() {
   }
 }
 
-document.body.classList.add("logado");
-document.body.classList.remove("logado");
+
 
 
 document.getElementById("btnAdicionar").addEventListener("click", adicionarItem);
