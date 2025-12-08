@@ -1,7 +1,13 @@
 // Firebase
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
-import { getFirestore, collection, addDoc, deleteDoc, doc, updateDoc, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
-import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getFirestore, collection, addDoc, deleteDoc, doc, updateDoc, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import {   getAuth,
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    GoogleAuthProvider,
+    signInWithPopup,
+    onAuthStateChanged,
+    signOut } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
 
 const isOwner = window.location.search.includes("admin");
@@ -41,7 +47,7 @@ const firebaseConfig = {
   apiKey: "AIzaSyDQBIdJf6xbeT7L_eG9akCmQnObNZuoof4",
   authDomain: "lista-de-compras-56e84.firebaseapp.com",
   projectId: "lista-de-compras-56e84",
-  storageBucket: "lista-de-compras-56e84.firebasestorage.app",
+  storageBucket: "lista-de-compras-56e84.appspot.com",
   messagingSenderId: "995972787687",
   appId: "1:995972787687:web:76abec54fc95521be96142"
 };
@@ -49,6 +55,88 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
+
+// -------------------------------
+// CADASTRAR 
+// -------------------------------
+
+// -------------------------------
+const authArea = document.getElementById("authArea");
+const mainArea = document.getElementById("mainArea");
+const btnCadastrar = document.getElementById("btnCadastrar");
+const btnGoogle = document.getElementById("btnGoogle");
+const logoutBtn = document.getElementById("logoutBtn");
+
+// -------------------------------
+function mostrarTela(usuario) {
+    if (usuario) {
+        authArea.style.display = "none";
+        mainArea.style.display = "block";
+    } else {
+        authArea.style.display = "flex";
+        mainArea.style.display = "none";
+    }
+}
+
+
+
+// -------------------------------
+onAuthStateChanged(auth, (user) => {
+    mostrarTela(user);
+});
+
+
+// -------------------------------
+// CADASTRAR OU ENTRAR COM EMAIL
+// -------------------------------
+btnCadastrar.addEventListener("click", async () => {
+
+    const nome = document.getElementById("nomeCadastro").value.trim();
+    const email = document.getElementById("emailCadastro").value.trim();
+    const senha = document.getElementById("senhaCadastro").value.trim();
+
+    if (!email || !senha) {
+        alert("Digite email e senha!");
+        return;
+    }
+
+    try {
+        
+        await createUserWithEmailAndPassword(auth, email, senha);
+        alert("Conta criada com sucesso!");
+    }
+    catch (error) {
+        
+        if (error.code === "auth/email-already-in-use") {
+            await signInWithEmailAndPassword(auth, email, senha);
+        } else {
+            alert(error.message);
+        }
+    }
+});
+
+
+// -------------------------------
+// LOGIN COM GOOGLE
+// -------------------------------
+const provider = new GoogleAuthProvider();
+
+btnGoogle.addEventListener("click", async () => {
+    try {
+        await signInWithPopup(auth, provider);
+    } catch (error) {
+        console.error(error);
+        alert("Erro ao logar com Google: " + error.message);
+    }
+});
+
+
+// -------------------------------
+// LOGOUT
+// -------------------------------
+logoutBtn.addEventListener("click", async () => {
+    await signOut(auth);
+});
 
 
 const listaRef = collection(db, "listaDeCompras");
