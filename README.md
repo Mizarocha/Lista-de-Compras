@@ -1,6 +1,10 @@
 <h1 align="center">Lista de Compras</h1> 
 
-### Organizador de Compras Pessoal!
+
+Chegou sua Lista de Compras! 🛒✨ 
+
+Um jeito rápido, simples e organizado de fazer suas compras sem stress.           
+Crie listas por categorias, marque o que já pegou e acesse de qualquer lugar!        
 <br>
 
 💡 Ideia:                                          
