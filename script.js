@@ -42,9 +42,6 @@ if ('serviceWorker' in navigator) {
   });
 }
 
-
-
-
 const firebaseConfig = {
   apiKey: "AIzaSyDQBIdJf6xbeT7L_eG9akCmQnObNZuoof4",
   authDomain: "lista-de-compras-56e84.firebaseapp.com",
@@ -70,7 +67,7 @@ const btnGoogle = document.getElementById("btnGoogle");
 const logoutBtn = document.getElementById("logoutBtn");
 
 // -------------------------------
-function mostrarTela(usuario) {
+/*function mostrarTela(usuario) {
     if (usuario) {
         authArea.style.display = "none";
         mainArea.style.display = "block";
@@ -78,13 +75,34 @@ function mostrarTela(usuario) {
         authArea.style.display = "flex";
         mainArea.style.display = "none";
     }
-}
+}*/
 
 
 
 // -------------------------------
-onAuthStateChanged(auth, (user) => {
+/*onAuthStateChanged(auth, (user) => {
     mostrarTela(user);
+});*/
+
+onAuthStateChanged(auth, (user) => {
+    document.getElementById("loadingScreen").style.display = "none";
+
+    if (user) {
+        authArea.style.display = "none";
+        mainArea.style.display = "block";
+
+        // Carregar lista somente depois do login confirmado
+        if (isOwner) {
+            const q = query(listaRef, orderBy("ordem"));
+            onSnapshot(q, (snapshot) => renderizarLista(snapshot));
+        } else {
+            carregarLista();
+        }
+
+    } else {
+        authArea.style.display = "flex";
+        mainArea.style.display = "none";
+    }
 });
 
 

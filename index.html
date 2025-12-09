@@ -14,14 +14,21 @@
 </head>
 
 <body>
-    <div id="authArea" class="auth-container">
+    <div id="loadingScreen" style="display:flex; 
+     justify-content:center;
+     align-items:center;
+     height:100vh;
+     font-size:22px;
+     font-weight:bold;">
+        Carregando...
+    </div>
 
+    <div id="authArea" class="auth-container" style="display:none;">
         <div class="logo">
             <img src="./img/logo2.png">
         </div>
 
         <div class="auth-box">
-
             <h2 class="titulo-cadastro">Login</h2>
 
             <input type="text" id="nomeCadastro" placeholder="Digite seu nome">
@@ -31,7 +38,6 @@
             <button id="btnCadastrar">Entrar</button>
 
             <hr>
-
             <button id="btnGoogle" class="google-btn">
                 <img src="https://www.svgrepo.com/show/355037/google.svg" alt="Google Icon">
                 Entrar com Google
