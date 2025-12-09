@@ -37,7 +37,6 @@ body {
   }
 }
 
-/* TELAS MÉDIAS */
 @media (min-width: 601px) {
   .input-area input[type="text"],
   .input-area select {
@@ -46,17 +45,27 @@ body {
   }
 }
 
-/* TELAS GRANDES (DESKTOP) */
+/* AJUSTES EXCLUSIVOS PARA DESKTOP */
 @media (min-width: 801px) {
-  #mainArea {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 20px;
+  .container {
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 25px;
   }
 
-  .container {
-    max-width: 900px;
-    margin: 0 auto;
+  .input-area input[type="text"],
+  .input-area select {
+    width: 200px;
+  }
+
+  .input-area button {
+    width: auto;
+    padding: 10px 18px;
+  }
+
+  h1 {
+    margin-top: 10px;
+    text-align: center;
   }
 }
 
