@@ -34,7 +34,6 @@ body {
   .input-area input[type="text"],
   .input-area select,
   .input-area button {
-    width: 100%;
   }
 }
 
