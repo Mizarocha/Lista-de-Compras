@@ -32,12 +32,11 @@ agrupados por categoria, de forma rápida, prática e acessível diretamente pel
      
 ✅ Adicionar itens separados por categorias (Mercado, Açougue, Limpeza, Hortifruti, Farmácia, etc.).                                   
 ✅ Marcar os itens como "comprados" com um simples checkbox.                             
-✅ Remover itens da lista de forma rápida.                                          
-✅ Reorganizar os itens dentro de cada categoria através de Drag & Drop (arrastar e soltar).                         
-✅ A lista fica salva no navegador (localStorage), mantendo os dados mesmo após fechar a página.                      
-✅ Interface simples, responsiva e fácil de usar no celular ou no computador.                                         
-✅ Usar aplicativos economiza recursos.                
-✅ Reduz o lixo e evita compras duplicadas ou esquecidas, tornando o processo mais prático.
+✅ Remover itens da lista de forma rápida.                                                                              
+✅ A lista fica salva no navegador (localStorage), mantendo os dados mesmo após fechar a página.                                     
+✅ Interface simples, responsiva e fácil de usar no celular ou no computador.                                                     
+✅ Usar aplicativos economiza recursos.                                  
+✅ Reduz o lixo e evita compras duplicadas ou esquecidas, tornando o processo mais prático.            
 
 🌐 Tecnologias utilizadas:                                             
 - HTML                                         
