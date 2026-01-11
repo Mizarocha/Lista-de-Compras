@@ -28,9 +28,21 @@ agrupados por categoria, de forma rápida, prática e acessível diretamente pel
 
 
 <br>
+
   🛠️ Solução Proposta – App de Lista de Compras Sustentável
+  
 
 O aplicativo de lista de compras foi desenvolvido para facilitar a organização do dia a dia, ao mesmo tempo em que incentiva práticas mais sustentáveis e conscientes de consumo.
+
+Acesso ao sistema:
+
+🔐 O aplicativo conta com uma tela de login, permitindo que o usuário:
+
+- Entre com usuário e senha          
+
+- Ou acesse rapidamente através do login com Google           
+
+Esse modelo garante que cada usuário tenha sua própria lista, com dados organizados e preparados para futuras evoluções, como acesso em vários dispositivos.
 
 Funcionalidades principais:
 
@@ -39,8 +51,8 @@ Funcionalidades principais:
 - Mercado
  - Açougue
 - Limpeza
-- Hortifruti
- Entre outros
+- Hortifruti           
+- Entre outros             
 
 ✅ Marcar itens como “comprados” por meio de um checkbox simples e intuitivo.                                
 ✅ Remover itens rapidamente, mantendo a lista sempre organizada.                                          
