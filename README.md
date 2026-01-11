@@ -4,7 +4,7 @@
 Chegou sua Lista de Compras! 🛒✨ 
 
 Um jeito rápido, simples e organizado de fazer suas compras sem stress.           
-Crie listas por categorias, marque o que já pegou e acesse de qualquer lugar!        
+Crie listas por categorias, marque o que já pegou, remove item pode  acesse de qualquer lugar!        
 <br>
 
 💡 Ideia:                                          
