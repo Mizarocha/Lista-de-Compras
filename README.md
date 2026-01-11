@@ -28,21 +28,41 @@ agrupados por categoria, de forma rápida, prática e acessível diretamente pel
 
 
 <br>
-  🛠️ Solução:                                                                                                                  
-     
-✅ Adicionar itens separados por categorias (Mercado, Açougue, Limpeza, Hortifruti, Farmácia, etc.).                                   
-✅ Marcar os itens como "comprados" com um simples checkbox.                             
-✅ Remover itens da lista de forma rápida.                                                                              
-✅ A lista fica salva no navegador (localStorage), mantendo os dados mesmo após fechar a página.                                     
-✅ Interface simples, responsiva e fácil de usar no celular ou no computador.                                                     
-✅ Usar aplicativos economiza recursos.                                  
-✅ Reduz o lixo e evita compras duplicadas ou esquecidas, tornando o processo mais prático.            
+  🛠️ Solução Proposta – App de Lista de Compras Sustentável
+
+O aplicativo de lista de compras foi desenvolvido para facilitar a organização do dia a dia, ao mesmo tempo em que incentiva práticas mais sustentáveis e conscientes de consumo.
+
+Funcionalidades principais:
+
+✅ Adicionar itens organizados por categorias, como:
+
+- Mercado
+ - Açougue
+- Limpeza
+- Hortifruti
+ Entre outros
+
+✅ Marcar itens como “comprados” por meio de um checkbox simples e intuitivo.                                
+✅ Remover itens rapidamente, mantendo a lista sempre organizada.                                          
+✅ A lista fica salva no navegador (localStorage), garantindo que os dados não sejam perdidos mesmo após fechar a página, sem necessidade de login ou consumo de servidores externos.                 
+✅ Interface simples, responsiva e acessível, funcionando bem tanto no celular quanto no computador.                                                
+
+<br>
+🌱 Sustentabilidade e Impacto Positivo:
+
+♻️ O uso do aplicativo substitui listas de papel, contribuindo para a redução do consumo de papel e do lixo.                                                               
+♻️ Ajuda a evitar compras duplicadas ou esquecidas, promovendo um consumo mais consciente e econômico.                                          
+♻️ O armazenamento local reduz o uso de recursos externos, tornando a solução mais eficiente e sustentável.                                      
+♻️ Incentiva o planejamento das compras, diminuindo o desperdício de alimentos e produtos.                                              
+
+<br>
 
 🌐 Tecnologias utilizadas:                                             
 - HTML                                         
 - CSS                                             
 - JavaScript                                                
-- LocalStorage (para armazenamento local no navegador)                                    
+- LocalStorage (para armazenamento local no navegador)
+                                 
 <br>                            
 🚀 Funcionalidades futuras (em desenvolvimento ou ideias): 
 
