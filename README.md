@@ -54,8 +54,8 @@ Funcionalidades principais:
 - Hortifruti           
 - Entre outros             
 
-✅ Marcar itens como “comprados” por meio de um checkbox simples e intuitivo.                                
-✅ Remover itens rapidamente, mantendo a lista sempre organizada.                                          
+✅ Marcar e descarma itens como “comprados” por meio de um checkbox simples e intuitivo.                
+✅ Remover itens rapidamente, mantendo a lista sempre organizada.                                                                     
 ✅ A lista fica salva no navegador (localStorage), garantindo que os dados não sejam perdidos mesmo após fechar a página, sem necessidade de login ou consumo de servidores externos.                 
 ✅ Interface simples, responsiva e acessível, funcionando bem tanto no celular quanto no computador.                                                
 
