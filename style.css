@@ -208,7 +208,8 @@ select {
   font-weight: 600;
 }
 
-#btnEntrar:hover {
+#btnEntrar:hover, 
+button:hover{
   background-color: #053310;
 }
 
