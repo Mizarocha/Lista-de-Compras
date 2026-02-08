@@ -67,7 +67,7 @@ const btnEntrar = document.getElementById("btnEntrar");
 const btnGoogle = document.getElementById("btnGoogle");
 const logoutBtn = document.getElementById("logoutBtn");
 
-btnEntrar.addEventListener("click", async () => {
+/*btnEntrar.addEventListener("click", async () => {
 
     const email = document.getElementById("emailCadastro").value.trim();
     const senha = document.getElementById("senhaCadastro").value.trim();
@@ -90,8 +90,33 @@ btnEntrar.addEventListener("click", async () => {
             alert(error.message);
         }
     }
-});
+});*/
 
+btnEntrar.addEventListener("click", async () => {
+  const email = document.getElementById("emailCadastro").value.trim();
+  const senha = document.getElementById("senhaCadastro").value.trim();
+
+  if (!email || !senha) {
+    alert("Digite email e senha!");
+    return;
+  }
+
+  try {
+    
+    await signInWithEmailAndPassword(auth, email, senha);
+  } catch (error) {
+    
+    if (error.code === "auth/user-not-found") {
+      try {
+        await createUserWithEmailAndPassword(auth, email, senha);
+      } catch (err) {
+        alert(err.message);
+      }
+    } else {
+      alert(error.message);
+    }
+  }
+});
 
 // -------------------------------
 // LOGIN COM GOOGLE
