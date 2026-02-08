@@ -67,51 +67,36 @@ const btnEntrar = document.getElementById("btnEntrar");
 const btnGoogle = document.getElementById("btnGoogle");
 const logoutBtn = document.getElementById("logoutBtn");
 
-/*btnEntrar.addEventListener("click", async () => {
+
+btnEntrar.addEventListener("click", async (e) => {
+  e.preventDefault();
 
     const email = document.getElementById("emailCadastro").value.trim();
     const senha = document.getElementById("senhaCadastro").value.trim();
 
-    if (!email || !senha) {
-        alert("Digite email e senha!");
-        return;
-    }
-
-    try {
-        
-        await createUserWithEmailAndPassword(auth, email, senha);
-        alert("Conta criada com sucesso!");
-    }
-    catch (error) {
-        
-        if (error.code === "auth/email-already-in-use") {
-            await signInWithEmailAndPassword(auth, email, senha);
-        } else {
-            alert(error.message);
-        }
-    }
-});*/
-
-btnEntrar.addEventListener("click", async () => {
-  const email = document.getElementById("emailCadastro").value.trim();
-  const senha = document.getElementById("senhaCadastro").value.trim();
-
   if (!email || !senha) {
-    alert("Digite email e senha!");
+    alert("Digite email e senha");
     return;
   }
 
   try {
     
     await signInWithEmailAndPassword(auth, email, senha);
+    console.log("Login realizado");
   } catch (error) {
     
-    if (error.code === "auth/user-not-found") {
+    if (
+      error.code === "auth/user-not-found" ||
+      error.code === "auth/invalid-credential"
+    ) {
       try {
         await createUserWithEmailAndPassword(auth, email, senha);
+        console.log("Usuário criado e logado");
       } catch (err) {
-        alert(err.message);
+        alert("Erro ao criar usuário: " + err.message);
       }
+    } else if (error.code === "auth/wrong-password") {
+      alert("Senha incorreta");
     } else {
       alert(error.message);
     }
