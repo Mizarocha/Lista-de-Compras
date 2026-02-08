@@ -1,23 +1,15 @@
-// Firebase
-//import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-//import { getFirestore, collection, addDoc, deleteDoc, doc, updateDoc, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-//import {   getAuth,
-   // createUserWithEmailAndPassword,
-    //signInWithEmailAndPassword,
-   // GoogleAuthProvider,
-   // signInWithPopup,
-   // onAuthStateChanged,
-   // signOut } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-
+ Firebase
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getFirestore, collection, addDoc, deleteDoc, doc, updateDoc, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-import { getAuth,
-    createUserWithEmailAndPassword,
+import {   getAuth,
+   createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
     GoogleAuthProvider,
-    signInWithPopup,
+   signInWithPopup,
     onAuthStateChanged,
-    signOut } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js"
+    signOut } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+
 
 
 const firebaseConfig = {
