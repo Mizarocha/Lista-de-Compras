@@ -108,12 +108,12 @@ const logoutBtn = document.getElementById("logoutBtn");*/
 
 const authArea = document.getElementById("authArea");
 const mainArea = document.getElementById("mainArea");
-const btnCadastrar = document.getElementById("btnCadastrar");
+const btnEntrar = document.getElementById("btnEntrar");
 const btnGoogle = document.getElementById("btnGoogle");
 const logoutBtn = document.getElementById("logoutBtn");
 
 
-btnCadastrar.addEventListener("click", async () => {
+btnEntrar.addEventListener("click", async () => {
 
   const email = document.getElementById("emailCadastro").value.trim();
   const senha = document.getElementById("senhaCadastro").value.trim();
