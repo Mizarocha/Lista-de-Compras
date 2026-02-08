@@ -208,13 +208,15 @@ select {
   font-weight: 600;
 }
 
-#btnEntrar:hover, 
-button:hover{
+#btnEntrar:hover 
+{
   background-color: #053310;
 }
-
+button:hover{
+  background-color: #0eee42;
+}
+  
  
-
 #btnDesmarcarTudo {
   padding: 10px 15px;
   background-color: rgb(223, 83, 83);
