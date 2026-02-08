@@ -1,26 +1,17 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  GoogleAuthProvider,
-  signInWithPopup,
-  onAuthStateChanged,
-  signOut
-} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
-import {
-  getFirestore,
-  collection,
-  addDoc,
-  deleteDoc,
-  updateDoc,
-  doc,
-  getDocs,
-  query,
-  orderBy,
-  onSnapshot
-} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+Firebase
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getFirestore, collection, addDoc, deleteDoc, doc, updateDoc, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import {   getAuth,
+   createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    GoogleAuthProvider,
+   signInWithPopup,
+    onAuthStateChanged,
+    signOut } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+
 
 
 const firebaseConfig = {
@@ -33,92 +24,12 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
 const db = getFirestore(app);
-const listaRef = collection(db, "listaDeCompras");
-
-
-const authArea = document.getElementById("authArea");
-const mainArea = document.getElementById("mainArea");
-const btnEntrar = document.getElementById("btnEntrar");
-const btnGoogle = document.getElementById("btnGoogle");
-const logoutBtn = document.getElementById("logoutBtn");
-const emailInput = document.getElementById("emailCadastro");
-const senhaInput = document.getElementById("senhaCadastro");
-
-
-const ADMIN_UID = "1pYpFtDz5Vg1ECGOU2Z1QY0gVEZ2";
-
-
-// EMAIL / SENHA
-btnEntrar.addEventListener("click", async () => {
-  const email = emailInput.value.trim();
-  const senha = senhaInput.value.trim();
-
-  if (!email || !senha) {
-    alert("Digite email e senha");
-    return;
-  }
-
-  try {
-    await signInWithEmailAndPassword(auth, email, senha);
-  } catch (error) {
-    if (error.code === "auth/user-not-found") {
-      await createUserWithEmailAndPassword(auth, email, senha);
-    } else {
-      alert(error.message);
-    }
-  }
-});
-
-
-const provider = new GoogleAuthProvider();
-
-btnGoogle.addEventListener("click", async () => {
-  try {
-    await signInWithPopup(auth, provider);
-  } catch (error) {
-    alert(error.message);
-  }
-});
+const auth = getAuth(app);
 
 
 
-let unsubscribeLista = null;
-
-onAuthStateChanged(auth, (user) => {
-  document.getElementById("loadingScreen").style.display = "none";
-
-  if (user) {
-
-     isOwner = user.uid === ADMIN_UID;
-
-     
-    authArea.style.display = "none";
-    mainArea.style.display = "block";
-
-    if (unsubscribeLista) unsubscribeLista();
-
-    if (isOwner) {
-      const q = query(listaRef, orderBy("ordem"));
-      unsubscribeLista = onSnapshot(q, renderizarLista);
-    } else {
-      carregarLista();
-    }
-
-  } else {
-    authArea.style.display = "flex";
-    mainArea.style.display = "none";
-
-    if (unsubscribeLista) unsubscribeLista();
-  }
-});
-
-logoutBtn.addEventListener("click", async () => {
-  await signOut(auth);
-});
-
-
+const isOwner = window.location.search.includes("admin");
 
 let lista = [];
 
@@ -150,10 +61,90 @@ if ('serviceWorker' in navigator) {
 }
 
 
+// -----------------------------------
+// CADASTRAR E ENTRAR COM EMAIL E SENHA
+// -----------------------------------
+const authArea = document.getElementById("authArea");
+const mainArea = document.getElementById("mainArea");
+const btnEntrar = document.getElementById("btnEntrar");
+const btnGoogle = document.getElementById("btnGoogle");
+const logoutBtn = document.getElementById("logoutBtn");
+
+
+btnEntrar.addEventListener("click", async () => {
+
+  const email = document.getElementById("emailCadastro").value.trim();
+  const senha = document.getElementById("senhaCadastro").value.trim();
+
+  if (!email || !senha) {
+    alert("Digite email e senha!");
+    return;
+  }
+
+  try {
+    await createUserWithEmailAndPassword(auth, email, senha);
+    alert("Conta criada com sucesso!");
+  } catch (error) {
+
+    if (error.code === "auth/email-already-in-use") {
+      await signInWithEmailAndPassword(auth, email, senha);
+      alert("Login realizado!");
+    } else {
+      alert(error.message);
+    }
+  }
+});
+
+
+// -------------------------------
+// LOGIN COM GOOGLE
+// -------------------------------
+const provider = new GoogleAuthProvider();
+
+btnGoogle.addEventListener("click", async () => {
+    try {
+        await signInWithPopup(auth, provider);
+    } catch (error) {
+        console.error(error);
+        alert("Erro ao logar com Google: " + error.message);
+    }
+});
+
+onAuthStateChanged(auth, (user) => {
+    document.getElementById("loadingScreen").style.display = "none";
+
+    if (user) {
+        authArea.style.display = "none";
+        mainArea.style.display = "block";
+
+        // Carregar lista somente depois do login confirmado
+        if (isOwner) {
+            const q = query(listaRef, orderBy("ordem"));
+            onSnapshot(q, (snapshot) => renderizarLista(snapshot));
+        } else {
+            carregarLista();
+        }
+
+    } else {
+        authArea.style.display = "flex";
+        mainArea.style.display = "none";
+    }
+});
+
+
+// -------------------------------
+// LOGOUT
+// -------------------------------
+logoutBtn.addEventListener("click", async () => {
+    await signOut(auth);
+});
+
+
+const listaRef = collection(db, "listaDeCompras");
+
 async function adicionarItem() {
   const nome = document.getElementById("itemInput").value.trim();
   const categoria = document.getElementById("categoriaSelect").value;
-  const ordem = document.querySelectorAll("li").length;
 
   if (nome === "") {
     alert("Digite o nome do item.");
@@ -162,11 +153,11 @@ async function adicionarItem() {
 
   if (isOwner) {
     await addDoc(listaRef, {
-  nome,
-  categoria,
-  comprado: false,
-  ordem
-});
+      nome,
+      categoria,
+      comprado: false,
+      ordem: lista.length
+    });
   } else {
     lista.push({
       nome,
@@ -316,6 +307,18 @@ function carregarLista() {
   }
 }
 
+window.onload = function() {
+  if (isOwner) {
+    const q = query(listaRef, orderBy("ordem"));
+    onSnapshot(q, (snapshot) => {
+      renderizarLista(snapshot);
+    });
+  } else {
+    carregarLista();
+  }
+};
+
+
 
 /* FUNÇAO BOTAO DESMARCAR*/ 
 async function desmarcarTudo() {
@@ -336,4 +339,3 @@ async function desmarcarTudo() {
 
 document.getElementById("btnAdicionar").addEventListener("click", adicionarItem);
 document.getElementById("btnDesmarcarTudo").addEventListener("click", desmarcarTudo);
-
