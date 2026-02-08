@@ -111,7 +111,7 @@ onAuthStateChanged(auth, (user) => {
 // -------------------------------
 btnCadastrar.addEventListener("click", async () => {
 
-    const nome = document.getElementById("nomeCadastro").value.trim();
+    
     const email = document.getElementById("emailCadastro").value.trim();
     const senha = document.getElementById("senhaCadastro").value.trim();
 
