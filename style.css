@@ -122,6 +122,11 @@ body {
   transition: opacity 0.2s ease;
 }
 
+.google-btn:hover {
+  background-color: #0c055f;
+}
+
+
 .google-btn img {
   width: 20px;
   height: 20px;
@@ -192,7 +197,7 @@ select {
   border: 1px solid #ccc;
 }
 
-button {
+#btnEntrar {
   padding: 10px 15px;
   background-color: #28a745;
   color: white;
@@ -202,6 +207,11 @@ button {
   font-size: 15px;
   font-weight: 600;
 }
+
+#btnEntrar:hover {
+  background-color: #053310;
+}
+
 
 #btnDesmarcarTudo {
   padding: 10px 15px;
