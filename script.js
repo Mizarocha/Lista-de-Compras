@@ -1,20 +1,17 @@
-
-
-Firebase
+// Firebase
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getFirestore, collection, addDoc, deleteDoc, doc, updateDoc, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-import {   getAuth,
-   createUserWithEmailAndPassword,
+import { getFirestore, collection, addDoc, deleteDoc, doc, updateDoc, onSnapshot, query, orderBy, getDocs } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import { getAuth,
+    createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
     GoogleAuthProvider,
-   signInWithPopup,
+    signInWithPopup,
     onAuthStateChanged,
-    signOut } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+    signOut } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js"
+    
 
 
-
-
-const firebaseConfig = {
+  const firebaseConfig = {
   apiKey: "AIzaSyDQBIdJf6xbeT7L_eG9akCmQnObNZuoof4",
   authDomain: "lista-de-compras-56e84.firebaseapp.com",
   projectId: "lista-de-compras-56e84",
@@ -27,11 +24,9 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
 
-
-
-const isOwner = window.location.search.includes("admin");
-
+let isOwner = false;
 let lista = [];
+
 
 function getDragAfterElement(container, y) {
   const draggableElements = [...container.querySelectorAll('li:not(.dragging)')];
@@ -60,39 +55,41 @@ if ('serviceWorker' in navigator) {
   });
 }
 
+// -------------------------------
+// CADASTRAR OU ENTRAR COM EMAIL
+// -------------------------------
 
-// -----------------------------------
-// CADASTRAR E ENTRAR COM EMAIL E SENHA
-// -----------------------------------
+
 const authArea = document.getElementById("authArea");
 const mainArea = document.getElementById("mainArea");
 const btnEntrar = document.getElementById("btnEntrar");
 const btnGoogle = document.getElementById("btnGoogle");
 const logoutBtn = document.getElementById("logoutBtn");
-
+const listaRef = collection(db, "listaDeCompras");
 
 btnEntrar.addEventListener("click", async () => {
 
-  const email = document.getElementById("emailCadastro").value.trim();
-  const senha = document.getElementById("senhaCadastro").value.trim();
+    const email = document.getElementById("emailCadastro").value.trim();
+    const senha = document.getElementById("senhaCadastro").value.trim();
 
-  if (!email || !senha) {
-    alert("Digite email e senha!");
-    return;
-  }
-
-  try {
-    await createUserWithEmailAndPassword(auth, email, senha);
-    alert("Conta criada com sucesso!");
-  } catch (error) {
-
-    if (error.code === "auth/email-already-in-use") {
-      await signInWithEmailAndPassword(auth, email, senha);
-      alert("Login realizado!");
-    } else {
-      alert(error.message);
+    if (!email || !senha) {
+        alert("Digite email e senha!");
+        return;
     }
-  }
+
+    try {
+        
+        await createUserWithEmailAndPassword(auth, email, senha);
+        alert("Conta criada com sucesso!");
+    }
+    catch (error) {
+        
+        if (error.code === "auth/email-already-in-use") {
+            await signInWithEmailAndPassword(auth, email, senha);
+        } else {
+            alert(error.message);
+        }
+    }
 });
 
 
@@ -110,10 +107,26 @@ btnGoogle.addEventListener("click", async () => {
     }
 });
 
+
+const ADMIN_UID = "1pYpFtDz5Vg1ECGOU2Z1QY0gVEZ2";
+
+let unsubscribeLista = null;
+unsubscribeLista = onSnapshot(q, (snapshot) => {
+  renderizarLista(snapshot);
+});
+
+
 onAuthStateChanged(auth, (user) => {
     document.getElementById("loadingScreen").style.display = "none";
 
+     if (unsubscribeLista) {
+    unsubscribeLista();
+    unsubscribeLista = null;
+  }
+
     if (user) {
+      isOwner = user.uid === ADMIN_UID;
+
         authArea.style.display = "none";
         mainArea.style.display = "block";
 
@@ -140,7 +153,6 @@ logoutBtn.addEventListener("click", async () => {
 });
 
 
-const listaRef = collection(db, "listaDeCompras");
 
 async function adicionarItem() {
   const nome = document.getElementById("itemInput").value.trim();
@@ -156,7 +168,8 @@ async function adicionarItem() {
       nome,
       categoria,
       comprado: false,
-      ordem: lista.length
+      ordem: Date.now()
+
     });
   } else {
     lista.push({
@@ -200,6 +213,7 @@ function renderizarLista(snapshot = null) {
     catDiv.appendChild(titulo);
 
     const ul = document.createElement("ul");
+    ul.dataset.categoria = categoria;
     
      ul.addEventListener("dragover", e => {
       e.preventDefault();
@@ -240,6 +254,7 @@ function renderizarLista(snapshot = null) {
       .filter(i => i.categoria === categoria)
       .forEach(item => {
         const li = document.createElement("li");
+        li.dataset.id = item.id; 
         li.className = item.comprado ? "comprado" : "";
          li.draggable = true; 
 
@@ -307,18 +322,6 @@ function carregarLista() {
   }
 }
 
-window.onload = function() {
-  if (isOwner) {
-    const q = query(listaRef, orderBy("ordem"));
-    onSnapshot(q, (snapshot) => {
-      renderizarLista(snapshot);
-    });
-  } else {
-    carregarLista();
-  }
-};
-
-
 
 /* FUNÇAO BOTAO DESMARCAR*/ 
 async function desmarcarTudo() {
@@ -339,3 +342,4 @@ async function desmarcarTudo() {
 
 document.getElementById("btnAdicionar").addEventListener("click", adicionarItem);
 document.getElementById("btnDesmarcarTudo").addEventListener("click", desmarcarTudo);
+
