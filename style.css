@@ -197,7 +197,7 @@ select {
   border: 1px solid #ccc;
 }
 
-#btnEntrar , #btnAdicionar{
+#btnEntrar, button{
   padding: 10px 15px;
   background-color: #28a745;
   color: white;
