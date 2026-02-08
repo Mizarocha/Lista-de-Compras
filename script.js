@@ -1,6 +1,6 @@
 // Firebase
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getFirestore, collection, addDoc, deleteDoc, doc, updateDoc, onSnapshot, query, orderBy, getDocs } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import { getFirestore, collection, addDoc, deleteDoc, doc, updateDoc, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 import { getAuth,
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
@@ -24,7 +24,8 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
 
-let isOwner = false;
+const isOwner = window.location.search.includes("admin");
+
 let lista = [];
 
 
@@ -65,7 +66,6 @@ const mainArea = document.getElementById("mainArea");
 const btnEntrar = document.getElementById("btnEntrar");
 const btnGoogle = document.getElementById("btnGoogle");
 const logoutBtn = document.getElementById("logoutBtn");
-const listaRef = collection(db, "listaDeCompras");
 
 btnEntrar.addEventListener("click", async () => {
 
@@ -108,25 +108,10 @@ btnGoogle.addEventListener("click", async () => {
 });
 
 
-const ADMIN_UID = "1pYpFtDz5Vg1ECGOU2Z1QY0gVEZ2";
-
-let unsubscribeLista = null;
-unsubscribeLista = onSnapshot(q, (snapshot) => {
-  renderizarLista(snapshot);
-});
-
-
 onAuthStateChanged(auth, (user) => {
     document.getElementById("loadingScreen").style.display = "none";
 
-     if (unsubscribeLista) {
-    unsubscribeLista();
-    unsubscribeLista = null;
-  }
-
     if (user) {
-      isOwner = user.uid === ADMIN_UID;
-
         authArea.style.display = "none";
         mainArea.style.display = "block";
 
@@ -153,6 +138,7 @@ logoutBtn.addEventListener("click", async () => {
 });
 
 
+const listaRef = collection(db, "listaDeCompras");
 
 async function adicionarItem() {
   const nome = document.getElementById("itemInput").value.trim();
@@ -168,8 +154,7 @@ async function adicionarItem() {
       nome,
       categoria,
       comprado: false,
-      ordem: Date.now()
-
+      ordem: lista.length
     });
   } else {
     lista.push({
@@ -213,7 +198,6 @@ function renderizarLista(snapshot = null) {
     catDiv.appendChild(titulo);
 
     const ul = document.createElement("ul");
-    ul.dataset.categoria = categoria;
     
      ul.addEventListener("dragover", e => {
       e.preventDefault();
@@ -254,7 +238,6 @@ function renderizarLista(snapshot = null) {
       .filter(i => i.categoria === categoria)
       .forEach(item => {
         const li = document.createElement("li");
-        li.dataset.id = item.id; 
         li.className = item.comprado ? "comprado" : "";
          li.draggable = true; 
 
@@ -321,6 +304,18 @@ function carregarLista() {
     }
   }
 }
+
+window.onload = function() {
+  if (isOwner) {
+    const q = query(listaRef, orderBy("ordem"));
+    onSnapshot(q, (snapshot) => {
+      renderizarLista(snapshot);
+    });
+  } else {
+    carregarLista();
+  }
+};
+
 
 
 /* FUNÇAO BOTAO DESMARCAR*/ 
